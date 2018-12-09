@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Recipe entry</h2>
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input [(ngModel)]="recipe.name" name="name" type="text" class="form-control" id="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="alterEgo">Source</label>
+      <input type="text" class="form-control" id="source">
+    </div>
+
+    <div class="form-group">
+      <label for="ingredient">Ingredients</label>
+      <select class="form-control" id="ingredient" required>
+          <option value="" disabled selected>Select your ingredient</option>
+        <option *ngFor="let ingr of ingredients" [value]="ingr">{{ingr}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="alterEgo">Preparation time</label>
+      <input type="text" class="form-control" id="prepTime" required>
+    </div>
+
+    <div class="form-group">
+      <label for="alterEgo">Preparation instructions</label>
+      <input type="text" class="form-control" id="prepInstructions" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+</div>
