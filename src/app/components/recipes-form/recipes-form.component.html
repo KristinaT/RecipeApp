@@ -1,35 +1,51 @@
 <div class="container">
-  <h2>Recipe entry</h2>
-  <form>
+  <h3><b>Recipe entry</b></h3>
+  <form (ngSubmit)="onSubmit()" class="container-style" #recipeForm="ngForm">
     <div class="form-group">
       <label for="name">Name</label>
-      <input [(ngModel)]="recipe.name" name="name" type="text" class="form-control" id="name" required>
+      <input placeholder="Enter recipe name..." [(ngModel)]="recipe.name" name="name" type="text" class="form-control"
+        id="name" required #name="ngModel">
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="alterEgo">Source</label>
-      <input type="text" class="form-control" id="source">
+      <label for="source">Source</label>
+      <input placeholder="Enter recipe source..." [(ngModel)]="recipe.source" name="source" type="text" class="form-control"
+        id="source">
     </div>
 
     <div class="form-group">
       <label for="ingredient">Ingredients</label>
-      <select class="form-control" id="ingredient" required>
-          <option value="" disabled selected>Select your ingredient</option>
+      <select [(ngModel)]="recipe.ingredientsList" name="ingredientsList" class="form-control" id="ingredient" required>
+        <option value="" disabled selected>Select your ingredient</option>
         <option *ngFor="let ingr of ingredients" [value]="ingr">{{ingr}}</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="alterEgo">Preparation time</label>
-      <input type="text" class="form-control" id="prepTime" required>
+      <label for="prepInstructions">Preparation instructions</label>
+      <input placeholder="Enter preparation instructions..." [(ngModel)]="recipe.prepInstructions" name="prepInstructions"
+        type="text" class="form-control" id="prepInstructions" required>
     </div>
 
-    <div class="form-group">
-      <label for="alterEgo">Preparation instructions</label>
-      <input type="text" class="form-control" id="prepInstructions" required>
+    <div class="btn-style">
+      <button type="submit" (click)="newRecipe(); recipeForm.reset()" class="btn btn-success btn-style">Submit
+        recipe
+      </button>
+      <button (click)="recipeForm.reset()" class="btn btn-danger btn-style">Cancel
+        recipe
+      </button>
     </div>
-
-    <button type="submit" class="btn btn-success">Submit</button>
-
   </form>
+</div>
+<div [hidden]="!submitted">
+  <h3>You submitted the following recipes:</h3>
+  <div class="container">
+    <div class="row">
+      <app-recipes-list *ngFor="let recipe of addedRecipes" [recipesList]="recipe">
+      </app-recipes-list>
+    </div>
+  </div>
 </div>
