@@ -6,5 +6,5 @@ import { Component, Input } from "@angular/core";
   styleUrls: ["./recipes-list.component.css"]
 })
 export class RecipesListComponent {
-  @Input("recipesList") recipesList: string;
+  @Input() recipesList: string;
 }

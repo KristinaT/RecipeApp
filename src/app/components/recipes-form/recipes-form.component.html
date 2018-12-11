@@ -1,6 +1,6 @@
 <div class="container">
   <h3><b>Recipe entry</b></h3>
-  <form (ngSubmit)="onSubmit()" class="container-style" #recipeForm="ngForm">
+  <form (ngSubmit)="onSubmit();recipeForm.reset()" class="container-style" #recipeForm="ngForm">
     <div class="form-group">
       <label for="name">Name</label>
       <input placeholder="Enter recipe name..." [(ngModel)]="recipe.name" name="name" type="text" class="form-control"
@@ -31,10 +31,10 @@
     </div>
 
     <div class="btn-style">
-      <button type="submit" (click)="newRecipe(); recipeForm.reset()" class="btn btn-success btn-style">Submit
+      <button type="submit" [disabled]="recipeForm.invalid" class="btn btn-success btn-style">Submit
         recipe
       </button>
-      <button (click)="recipeForm.reset()" class="btn btn-danger btn-style">Cancel
+      <button type="reset" (click)="recipeForm.reset()" class="btn btn-danger btn-style">Cancel
         recipe
       </button>
     </div>

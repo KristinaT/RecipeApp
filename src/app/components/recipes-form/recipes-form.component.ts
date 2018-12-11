@@ -27,16 +27,12 @@ export class RecipesFormComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     console.log("submitted");
+    this.addedRecipes.push(this.recipe);
+    this.recipe = new Recipe("", [], "");
   }
 
   AddIngredient(ingredient) {
     return this.addedIngredients.push(ingredient);
-  }
-
-  newRecipe() {
-    this.addedRecipes.push(this.recipe);
-    this.recipe = new Recipe("", [], "");
-    // console.log(this.addedRecipes);
   }
 
   ngOnInit() {}
